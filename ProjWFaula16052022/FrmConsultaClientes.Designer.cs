@@ -42,6 +42,7 @@
             this.dgvClientes.RowTemplate.Height = 29;
             this.dgvClientes.Size = new System.Drawing.Size(776, 426);
             this.dgvClientes.TabIndex = 0;
+            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // FrmConsultaClientes
             // 

@@ -25,11 +25,26 @@ namespace ProjWFaula16052022
                 Telefone = txtTelefone.Text,
             };
 
-            ClienteService clienteService = new ClienteService();
+            Service service = new Service();
 
-            clienteService.Add(cliente);
+            service.AddCliente(cliente);
 
             MessageBox.Show("Registro inserido com sucesso!");
+        }
+
+        private void cbxOpcoes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmClientes_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

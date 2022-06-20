@@ -1,9 +1,7 @@
 ﻿namespace Models
 {
-    public class Cliente
+    public class Cliente : Pessoa
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Telefone { get; set; }
+        
     }
 }

@@ -11,20 +11,16 @@ using System.Windows.Forms;
 
 namespace ProjWFaula16052022
 {
-    public partial class FrmConsultaClientes : Form
+    public partial class FrmConsultaVenda : Form
     {
-        public FrmConsultaClientes()
+        public FrmConsultaVenda()
         {
             InitializeComponent();
         }
 
-        private void FrmConsultaClientes_Load(object sender, EventArgs e)
+        private void FrmConsultaVenda_Load(object sender, EventArgs e)
         {
-            dgvClientes.DataSource = new Service().FindAllCliente();
-        }
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            dgvVenda.DataSource = new Service().FindAllVenda();
         }
     }
 }
