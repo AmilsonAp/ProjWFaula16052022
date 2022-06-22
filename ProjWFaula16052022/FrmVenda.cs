@@ -33,13 +33,11 @@ namespace ProjWFaula16052022
 
             cboCliente.DataSource = new Service().FindAllCliente();
             cboCliente.ValueMember = "Id";
-            cboCliente.DisplayMember = "Nome";
-            cboCliente.DisplayMember = "Telefone";
+            cboCliente.DisplayMember = "Nome";          
 
             cboVendedor.DataSource = new Service().FindAllVendedor();
             cboVendedor.ValueMember = "Id";
-            cboVendedor.DisplayMember = "Nome";
-            cboCliente.DisplayMember = "Telefone";
+            cboVendedor.DisplayMember = "Nome";          
 
         }
 
@@ -63,6 +61,11 @@ namespace ProjWFaula16052022
         {
             FrmConsultaVenda frmVenda = new FrmConsultaVenda();
             frmVenda.ShowDialog();
+        }
+
+        private void cboCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
    

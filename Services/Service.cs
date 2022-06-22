@@ -1,5 +1,6 @@
 ﻿using Models;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace Services
 {
@@ -93,7 +94,7 @@ namespace Services
             SqlConnection conn = new SqlConnection(strCon);
             conn.Open();
             //Exemplo Insert
-            string strInsert = "insert into Produto (Id, Descricao) values (@Id, @Descricao)";
+            string strInsert = "insert into Produto (Id, Descricao) values (@Id, @Descricao)";          
             SqlCommand commandInsert = new SqlCommand(strInsert, conn);
 
             commandInsert.Parameters.Add(new SqlParameter("@Id", produto.Id));
@@ -192,8 +193,21 @@ namespace Services
             List<Venda> listVenda = new List<Venda>();
             SqlConnection conn = new SqlConnection(strCon);
             conn.Open();
-            string strSelect = "select Produto, Cliente, Vendedor from Venda";
-            SqlCommand commandSelect = new SqlCommand(strSelect, conn);
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("");
+            sb.Append("select p.Descricao DescricaoProduto, ");
+            sb.Append("       c.Nome NomeCliente,  ");
+            sb.Append("       vd.Nome NomeVendedor ");
+            sb.Append("  from Venda v, ");
+            sb.Append("       Produto p,  ");
+            sb.Append("       Cliente c, ");
+            sb.Append("       Vendedor vd ");
+            sb.Append("where v.Produto = p.Id ");
+            sb.Append("  and v.Cliente = c.Id ");
+            sb.Append("  and v.Vendedor = vd.Id ");
+
+            SqlCommand commandSelect = new SqlCommand(sb.ToString(), conn);
             SqlDataReader dr = commandSelect.ExecuteReader();
 
             while (dr.Read())
@@ -201,9 +215,9 @@ namespace Services
                 //Console.WriteLine("Produto: " + dr["Produto"] + "\nCliente: " + dr["Cliente"] + "\nVendedor: " + dr["Vendedor"]);
                 listVenda.Add(new Venda()
                 {
-                    Produto = new Produto() { Id = Convert.ToInt32(dr["Produto"]) },
-                    Cliente = new Cliente() { Id = Convert.ToInt32(dr["Cliente"]) },
-                    Vendedor = new Vendedor() { Id = Convert.ToInt32(dr["Vendedor"]) },
+                    Produto = new Produto() { Descricao = dr["DescricaoProduto"].ToString() },
+                    Cliente = new Cliente() { Nome = dr["NomeCliente"].ToString() },
+                    Vendedor = new Vendedor() { Nome = dr["NomeVendedor"].ToString() },
                 }
                 );
             }
